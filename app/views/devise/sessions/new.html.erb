@@ -1,0 +1,31 @@
+<div class="field fonty formpad">
+	
+	<br>
+	<br>	
+	<br>
+	<br>	
+	<br>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+    <h3 class="fonty">تسجيل الدخول</h3> <br><br>
+    <%= devise_error_messages! %>
+    <div class="field fonty formpad">
+      <%= f.label :email, "البريد الإلكتروني" %>
+      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="field fonty formpad">
+      <%- if devise_mapping.recoverable? %>
+        <%= link_to "نسيت كلمة المرور؟", new_password_path(resource_name), class: 'right' %> <br><br>
+      <% end -%>
+      <%= f.label :password, "كلمة المرور" %>
+      <%= f.password_field :password, class: 'form-control' %>
+	<br>
+    <% if devise_mapping.rememberable? -%>
+        <label> 
+          <%= f.check_box :remember_me %> تذكرني
+        </label> <br><br>
+      <%= f.submit 'تسجيل الدخول', :class => 'button right' %>
+    </div>
+
+      <% end -%>
+  <% end %>
+</div>

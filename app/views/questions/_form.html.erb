@@ -1,0 +1,25 @@
+<%= form_for(@question) do |f| %>
+  <% if @question.errors.full_messages.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> لم يتم حفظ السؤال</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message if @question.errors.full_messages.first == message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field fonty formpad">
+    <%= f.label :q, "السؤال" %><br>
+    <%= f.text_area :q %>
+  </div>
+  <div class="field fonty formpad">
+    <%= f.label :ans, "الإجابة" %><br>
+    <%= f.text_area :ans %>
+  </div>
+  <div class="actions fonty formpad">
+    <%= f.submit "حفظ" %>
+  </div>
+<% end %>

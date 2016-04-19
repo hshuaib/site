@@ -1,0 +1,46 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<p class="fonty">
+  <strong> اسم الفعالية</strong>
+  <%= @event.name %>
+</p>
+
+<p class="fonty">
+  <strong>وصف الفعالية</strong>
+  <%= @event.description %>
+</p>
+
+<p class="fonty">
+  <strong>الصورة</strong>
+  <%= image_tag @event.picture %>
+</p>
+
+<p class="fonty">
+  <strong>المكان</strong>
+  <%= @event.place %>
+</p>
+
+<p class="fonty">
+  <strong>التاريخ من</strong>
+  <%= @event.datefrom %>
+</p>
+
+<p class="fonty">
+  <strong>التاريخ إلى</strong>
+  <%= @event.dateto %>
+</p>
+
+<p class="fonty">
+  <strong>الوقت</strong>
+  <%= @event.time.strftime("%H:%M") %>
+</p>
+
+<br>
+<p class="fonty">
+<%= link_to 'تعديل', edit_event_path(@event) %> |
+<%= link_to 'الرجوع', events_path %>
+</p>

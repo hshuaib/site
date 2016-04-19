@@ -1,0 +1,130 @@
+<br>
+<br>
+<br>
+
+<h2 class="fonty" align="center">صفحة المطابقة</h2>
+<br>
+<br>
+<br>
+<div class="formpad">
+	<h4 class="eventheading"> الوظيفة </h4><br>
+
+	<table class="fonty table" align="center">
+	    <thead>
+	 		<tr>
+      <th class="tablespace eventheading down"> اسم المؤسسة </th>
+      <th class="tablespace eventheading down">اسم الوظيفة</th>
+      <th class="tablespace eventheading down">عدد الوظائف</th>
+			 
+			 </tr>
+	    </thead>
+		
+        <tr>
+        <td class="tablespace fonty"><%= @company.companyName %></td>
+        <td class="tablespace fonty"><%= @company.jobTitle %></td>
+        <td class="tablespace fonty"><%= @company.noOfEmployees %></td>
+        </tr>
+	</table>
+	
+	
+	<br>
+	<br>
+	<br>
+	
+	
+	<div class="formpad">
+	<h4 class="eventheading"> المتقدمين المرشحين للوظيفة </h4>	<br>
+
+		<table class="fonty table" align="center">
+		    <thead>
+		 		<tr>
+      <th class="tablespace eventheading down">الاسم</th>
+      <th class="tablespace eventheading down">الجنسية</th>
+      <th class="tablespace eventheading down">العمر</th>
+      <th class="tablespace eventheading down">الجنس</th>
+      <th class="tablespace eventheading down">الحالة الإجتماعية</th>
+      <th class="tablespace eventheading down">الجوال</th>
+      <th class="tablespace eventheading down">المستوى التعليمي</th>	
+	        <th colspan="2"> </th>		 
+				 </tr>
+		    </thead>
+			
+			<!-- create empty arrays. 
+			x: to hold the list of attributes of preferences
+			y: to hold the list of values of preferences
+			idarray: to hold the ids of applicants who have the matching preferences
+				
+				exclude the (no preferences) from array x -->
+		<% x= [] %>
+		<% y= [] %>
+		<% idarray= [] %>
+		
+		<% if @company.nationality != "" %>
+		
+		<% x= ["nationality"] %>
+		<% y= [@company.nationality] %>
+		
+		<%end%>
+		
+		<% if @company.gender != "لا يهم" %>
+		
+		<% x+= ["gender"] %>
+		<% y+= [@company.gender] %>
+		
+		<%end%>
+		
+		<% if @company.disability !=  "لا يهم"  %>
+		
+		<% x+= ["disability"] %>
+		<% y+= [@company.disability] %>
+		
+		<%end%>
+		
+		<% if @company.education != "لا يهم" %>
+		
+		<% x+= ["education"] %>
+		<% y+= [@company.education] %>
+		
+		<%end%>
+		
+
+		<!-- iterate over the applicants and check if their info matchs required preferences
+			 	if yes, add their id to array y.
+			applicantarray: to hold the subset of the prefered characteristics of an applicant, then
+			it will compare theis subset to the preference if match, it will add the applicant to the new table  -->
+			
+			
+	    <% @applicants.each do |applicant| %>
+		<% applicantarray= [] %>
+			<% x.each do |hanan| %>
+				<% applicantarray+= [applicant[hanan]] %>
+			<%end%>				
+			<% if applicantarray.to_set.subset?(y.to_set)%>
+				<% idarray+= [applicant.id] %>				
+			
+			<%end%>
+
+
+
+		<% if idarray.include? (applicant.id) %>
+		
+	        <tr>
+	        <td class="tablespace fonty"><%= applicant.name %></td>
+	        <td class="tablespace fonty"><%= applicant.nationality %></td>
+	        <td class="tablespace fonty"><%= Applicant.getage(applicant.dob) %></td>
+	        <td class="tablespace fonty"><%= applicant.gender %></td>
+	        <td class="tablespace fonty"><%= applicant.status %></td>
+	        <td class="tablespace fonty"><%= applicant.mobileNo %></td>
+	        <td class="tablespace fonty"><%= applicant.education %></td>
+	        <td class="tablespace fonty"><%= link_to 'عرض', applicant %></td>
+	        <td class="tablespace fonty"><%= link_to 'تعديل', edit_applicant_path(applicant) %></td>
+	        </tr>
+		<%end%>
+		<%end%>
+		
+	
+
+
+			
+		</table>
+

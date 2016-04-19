@@ -1,0 +1,331 @@
+<%= form_for @applicant, html: {multipart: true} do |f| %>
+  <% if @applicant.errors.full_messages.any? %>
+    <div id="error_explanation">
+      <h2><%= @applicant.errors.count %> أخطاء منعت هذا الطلب من الحفظ</h2>
+      <ul>
+      <% @applicant.errors.full_messages.each do |message| %>
+        <li><%= message if @applicant.errors.full_messages.first == message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
+<hr>  
+<br>
+  <div class="field fonty formpad">
+<h3>
+ البيانات الشخصية
+</h3>
+  <br>
+  </div>
+
+  <div class="field fonty formpad">
+    <%= f.label :name, "الاسم"%><br>
+    <%= f.text_field :name, :required => true  %>
+  </div>
+</br>
+  <div class="field fonty formpad">
+    <%= f.label :QID, "الرقم الشخصي" %><br>
+    <%= f.text_field :QID, :required => true  %>
+  </div>
+</br>
+
+  <div class="field fonty formpad">
+    <%= f.label :image, "صورة البطاقة الشخصية"%><br>
+    <%= f.file_field :image, :required => true  %>
+  </div>
+</br>
+
+  <div class="field fonty formpad" >
+    <%= f.label :nationality, "الجنسية"%><br>
+    <%= f.collection_select :nationality, Country.all, :name, :name, :required => true, :selected => 'Qatar' %>
+
+  </div>
+  </br>
+  
+  <div class="field fonty formpad" id="تاريخ الميلاد">
+    <%= f.label :dob, "تاريخ الميلاد"%><br>
+	<%= f.date_select :dob, :start_year=> 1950, :end_year=> (Time.now.year-18), :required => true  %>  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :gender, "الجنس"%><br>
+    <%= f.select(:gender, Applicant::GENDER_LIST,:required => true)  %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :status, "الحالة الإجتماعية" %><br>
+    <%= f.select(:status,Applicant::STATUS_LIST, :required => true)  %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :noOfChildren, "عدد الأطفال" %><br>
+    <%= f.number_field :noOfChildren  %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :livingArea, "المنطقة السكنية "%><br>
+    <%= f.text_field :livingArea, :required => true  %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :phoneNo, "رقم الهاتف" %><br>
+    <%= f.text_field :phoneNo %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :mobileNo, "رقم الجوال" %><br>
+    <%= f.text_field :mobileNo, :required => true  %>
+  </div>
+  </br>
+  
+<hr>  
+
+  <div class="field fonty formpad">
+<h3>
+حالة الإعاقة 
+</h3>
+
+
+ <br>
+  </div>
+
+
+
+ 
+  <div class="field fonty formpad">
+
+   <table  class="field fonty formpad" align='right'>
+	 
+	 
+ 	 <thead>
+ 	 <tr>
+ 	     <th class="tablespace eventheading down"> <%= f.label :disability, "نوع الإعاقة" %> </th>
+ 	     <th class="tablespace eventheading down initiallyHidden" id= 'details'> <%= f.label :details, "التفاصيل"%> </th>
+ 	     <th class="tablespace eventheading down"> <%= f.label :notes, "ملاحظات"%> </th>
+ 	 </tr>
+ 	 </thead>  
+  </div>
+ 
+  <div class="field fonty formpad"> 
+ 	 <tr>
+ 		<td class="tablespace fonty" >
+ 		   <text id= 'disability_hear'> 
+			   <%= check_box_tag 'applicant[disability][]', 'سمعية', checkeda('سمعية'), id: 'disability_hear' %>  </text>
+ 			  <%= label_tag 'disability_hear', 'سمعية'%>
+ 		</td>
+ 		<td class="tablespace fonty initiallyHidden" id= 'disability_hear1'>
+ 	      <%= check_box_tag 'applicant[details][]', 'صم كامل', checkeda('صم كامل'), id: 'disability_hear' %>  
+ 	     	  <%= label_tag 'disability_hear', 'صم كامل'%><br>
+ 
+ 	         <%= check_box_tag 'applicant[details][]', 'ضعف في السمع', checkeda('ضعف في السمع'), id: 'disability_hear' %>  
+ 	     	  <%= label_tag 'disability_hear', 'ضعف في السمع'%><br>
+ 
+ 	         <%= check_box_tag 'applicant[details][]', 'صعوبة في النطق', checkeda('صعوبة في النطق'), id: 'disability_hear' %>  
+ 	     	  <%= label_tag 'disability_hear', 'صعوبة في النطق'%> </br></br>
+ 		</td>
+ 		<td>
+ 			<%= f.text_area :notes %>
+ 		</td>
+		
+ 	 </tr>
+ 	 <br>
+
+ </div>
+
+
+	 
+  <div class="field fonty formpad">	 
+ 	 <tr>		 
+ 		<td class="tablespace fonty ">
+ 		   <text id= 'disability_vision'> 
+ 			  <%= check_box_tag 'applicant[disability][]', 'بصرية', checkeda('بصرية'), id: 'disability_vision' %> </text>
+ 		    <%= label_tag 'disability_vision', 'بصرية'%>
+ 		</td> 
+ 		<td id= 'disability_vision1' class="tablespace fonty initiallyHidden">
+ 		   </br>  
+				<%= check_box_tag 'applicant[details][]', 'كفيف', checkeda('كفيف'), id: 'disability_vision' %> 
+ 		     <%= label_tag 'disability_vision', 'كفيف'%> <br>
+
+ 		       <%= check_box_tag 'applicant[details][]', 'ضعف بصري', checkeda('ضعف بصري'), id: 'disability_vision' %> 
+ 		     <%= label_tag 'disability_vision', 'ضعف بصري'%> </br></br> 
+
+ 		</td>
+ 		<td>
+ 			 <%= f.text_area :notes %>  
+
+ 		</td>
+		
+ 	 </tr>
+	
+ </div>
+
+
+	 
+  <div class="field fonty formpad">	 
+ 	 <tr>
+
+ 		<td class="tablespace fonty" >
+			<text id= 'disability_move'> 
+ 		      <%= check_box_tag 'applicant[disability][]', 'حركية', checkeda('حركية'), id: 'disability_move' %> </text>
+ 		     <%= label_tag 'disability_move', 'حركية'%>
+ 		</td>
+ 		<td class="tablespace fonty initiallyHidden" id= 'disability_move1'>
+ 			 </br></br>   <%= check_box_tag 'applicant[details][]', 'كرسي متحرك', checkeda('كرسي متحرك'), id: 'disability_move' %> 
+ 			   <%= label_tag 'disability_move', 'كرسي متحرك'%><br>
+  
+ 			    <%= check_box_tag 'applicant[details][]', 'يستخدم عكازات', checkeda('يستخدم عكازات'), id: 'disability_move' %> 
+ 			   <%= label_tag 'disability_move', 'يستخدم عكازات'%><br>
+  
+ 			    <%= check_box_tag 'applicant[details][]', 'إعاقة في القدم', checkeda('إعاقة في القدم'), id: 'disability_move' %> 
+ 			   <%= label_tag 'disability_move', 'إعاقة في القدم'%><br>
+  
+ 			    <%= check_box_tag 'applicant[details][]', 'إعاقة في الذراع', checkeda('إعاقة في الذراع'), id: 'disability_move' %> 
+ 			   <%= label_tag 'disability_move', 'إعاقة في الذراع'%> </br></br>
+	  		 
+			   
+ 		</td>
+ 		<td>
+ 			<%= f.text_area :notes %>
+ 		</td> 
+		
+ 	 </tr>
+	 
+	 
+	 
+	  <div class="field fonty formpad">	 
+	 	 <tr>
+	 		<td class="tablespace fonty" >
+				<text id= 'disability_brain'>
+	 			  <%= check_box_tag 'applicant[disability][]', 'ذهنية', checkeda('ذهنية'), id: 'disability_brain' %> </text>
+	 		    <%= label_tag 'disability_brain', 'ذهنية'%>
+	 		</td>
+	 		<td class="tablespace fonty initiallyHidden" id= 'disability_brain1'>
+	 		   </br>      <%= check_box_tag 'applicant[details][]', 'بسيطة', checkeda('بسيطة'), id: 'disability_brain' %> 
+			   				<%= label_tag 'disability_brain', 'بسيطة'%> <br>
+
+	 		       		 <%= check_box_tag 'applicant[details][]', 'متوسطة', checkeda('متوسطة'), id: 'disability_brain' %> 
+	 		     			<%= label_tag 'disability_brain', 'متوسطة'%> </br>
+						
+						<%= check_box_tag 'applicant[details][]', 'شديدة', checkeda('شديدة'), id: 'disability_brain' %> 
+				 		     <%= label_tag 'disability_brain', 'شديدة'%> <br> </br>
+	 		</td>
+	 		<td>
+	 			<%= f.text_area :notes %> 
+	 		</td>
+		
+	 	 </tr>
+	
+	 </div>
+	 
+ </table>
+ </div>
+
+
+        <br><br><br> <br>  <br><br><br> <br> <br><br><br> <br>
+ 	        <br><br><br> <br> <br><br><br> <br> <br>   <br><br>   <br> <br><br><br>  
+ 
+ 
+ 
+    </br>
+
+
+
+  <div class="field fonty formpad">
+    <%= f.label :age, "العمر عند الإصابة بالإعاقة" %><br>
+    <%= f.text_field :age, :required => true  %>
+  </div>
+    </br>
+  <div class="field fonty formpad">
+    <%= f.label :reason, "أسباب الإصابة" %><br>
+    <%= f.text_field :reason %>
+  </div>
+    </br>
+	
+	
+	  <div class="field fonty formpad">
+	    <%= f.label :cv, "صورة بطاقة العضوية لجمعية ذوي الإعاقة"%><br>
+	    <%= f.file_field :cv, :required => true  %>
+	  </div>
+	</br>
+<hr>  
+
+
+  <div class="field fonty formpad">
+	  <h3>
+المؤهلات والخبرات
+	  </h3>
+
+
+ <br>
+  </div>
+
+  <div class="field fonty formpad">
+    <%= f.label :education, "المستوى التعليمي"%><br>
+    <%= f.select(:education,Applicant::EDUCATION_LIST, :required => true) %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :workshop, "الدورات" %><br>
+    <%= f.text_area :workshop %>
+  </div>
+  </br> 
+  
+  <div class="field fonty formpad">
+    <%= f.label :currentJob, "هل تشغل وظيفة حاليًا"%><br>
+    <%= f.radio_button :currentJob, true, :value => "نعم" %> نعم <br>
+    <%= f.radio_button :currentJob, false, :value => "لا"  %> لا
+  </div>  
+  
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :jobDescription, "الوظائف التي عملت بها"%><br>
+    <%= f.text_area :jobDescription %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :abilities, " الوظيفة التي تستطيع القيام بها" %><br>
+    <%= f.text_area :abilities %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :preference, "الوزارات/ المؤسسات المرشحة للتوظيف" %><br>
+    <%= f.text_area :preference %>
+  </div>
+  </br>
+  
+  <div class="field fonty formpad">
+    <%= f.label :skills, "الخبرات"%><br>
+    <%= f.text_field :skills %>
+  </div>
+  </br>
+  
+	  <div class="field fonty formpad">
+	    <%= f.label :cv, "صورة السيرة الذاتية"%><br>
+	    <%= f.file_field :cv  %>
+	  </div>
+	
+  </br>
+  
+  
+  
+  <div class="field fonty formpad">
+	<input type= "checkbox" required name=" إعاقةحركية" value="إعاقة حركية" id="disability"> بتقديمي هذا الطلب، أوافق على مشاركة معلوماتي الشخصية مع الجهات والمؤسسات الباحثة عن موظف<br>
+  </div>
+  
+  </br>
+  <div class="actions fonty formpad">
+    <%= f.submit "حفظ" %>
+  </div>
+  
+<% end %>

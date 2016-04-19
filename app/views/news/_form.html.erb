@@ -1,0 +1,44 @@
+
+
+
+
+<%= form_for @news, html: {multipart: true} do |f| %>
+  <% if @news.errors.full_messages.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
+
+      <ul>
+      <% @news.errors.full_messages.each do |message| %>
+        <li><%= message if @news.errors.full_messages.first == message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+<hr>  
+<br>
+
+
+  <div class="field fonty formpad">
+    <%= f.label :title, "العنوان"  %><br>
+    <%= f.text_field :title, :required=> true %>
+  </div>
+  <div class="field fonty formpad">
+    <%= f.label :picture, "الصورة" %><br>
+    <%= f.file_field :picture %>
+  </div>
+  <div class="field fonty formpad">
+    <%= f.label :body, "المحتوى" %><br>
+    <%= f.text_area :body, :required=> true %>
+  </div>
+  <div class="field fonty formpad">
+    <%= f.label :date, "التاريخ" %><br>
+    <%= f.date_select :date %>
+  </div>
+  <br>
+  <div class="actions fonty formpad">
+    <%= f.submit "حفظ" %>
+  </div>
+  <br>
+<% end %>

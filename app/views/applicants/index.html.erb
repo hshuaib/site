@@ -1,0 +1,80 @@
+<br>
+<br>
+<br>
+<h2 class="fonty" align="center">قائمة المتقدمين</h2>
+<br>
+<br>
+<table class="fonty table" align="center">
+  <thead>
+
+    <tr>
+	<div class="field fonty formpad">
+        <%= form_tag applicants_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "بحث" %>
+        <% end %>
+	</div>
+	<br>
+		
+      <th class="tablespace eventheading down">الاسم</th>
+  <%#    <th>الرقم الشخصي</th>	%>
+      <th class="tablespace eventheading down">الجنسية</th>
+      <th class="tablespace eventheading down">العمر</th>
+      <th class="tablespace eventheading down">الجنس</th>
+      <th class="tablespace eventheading down">الحالة الإجتماعية</th>
+   <%#   <th>عدد الأطفال</th>  %>
+   <%#   <th>مكان السكن</th> %>
+   <%#   <th>رقم الهاتف</th> %>
+      <th class="tablespace eventheading down">الجوال</th>
+      <th class="tablespace eventheading down">نوع الإعاقة</th>
+     <%# <th class="tablespace eventheading down">التفاصيل</th>  %>
+    <%#  <th>ملاحظات</th> %>
+    <%#  <th>العمر عند الإصابة بالإعاقة</th> %>
+    <%#  <th>أسباب الإصابة</th> %>
+      <th class="tablespace eventheading down">المستوى التعليمي</th>
+    <%#  <th>الدورات</th> %>
+      <th class="tablespace eventheading down">هل تشغل وظيفة حاليًا</th>
+    <%#  <th>الوظائف التي عملت بها</th> %>
+    <%#  <th>الوظيفة التي تستطيع القيام بها</th> %>
+    <%#  <th>الوزارات/ المؤسسات المرشحة للتوظيف</th> %>
+    <%#  <th>الخبرات</th> %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applicants.each do |applicant| %>
+      <tr>
+        <td class="tablespace fonty"><%= applicant.name %></td>
+        <%#  <td><%= applicant.QID % ></td> %>
+        <td class="tablespace fonty"> <%= applicant.nationality %></td>
+        <td class="tablespace fonty"><%= Applicant.getage(applicant.dob) %></td>
+        <td class="tablespace fonty"><%= applicant.gender %></td>
+        <td class="tablespace fonty"><%= applicant.status %></td>
+     <%#   <td><%= applicant.noOfChildren %></td> 
+     <%#   <td><%= applicant.livingArea %></td> 
+     <%#   <td><%= applicant.phoneNo %></td> 
+        <td class="tablespace fonty"><%= applicant.mobileNo %></td>
+        <td class="tablespace fonty"><%= applicant.disability %></td>
+      <%#  <td class="tablespace fonty"><%= applicant.details %></td> 
+     <%#   <td><%= applicant.notes %></td> 
+     <%#   <td><%= applicant.age %></td> 
+     <%#   <td><%= applicant.reason %></td> 
+        <td class="tablespace fonty"><%= applicant.education %></td>
+     <%#   <td><%= applicant.workshop %></td> 
+        <td class="tablespace fonty"><%= human_boolean(applicant.currentJob) %></td>
+     <%#   <td class="tablespace fonty"><%= applicant.jobDescription %></td> 
+     <%#   <td><%= applicant.abilities %></td> 
+     <%#   <td><%= applicant.preference %></td> 
+     <%#   <td><%= applicant.skills %></td> 
+        <td class="tablespace fonty"><%= link_to 'عرض', applicant %></td>
+        <td class="tablespace fonty"><%= link_to 'تعديل', edit_applicant_path(applicant) %></td>
+        <td class="tablespace fonty"><%= link_to 'مسح', applicant, method: :delete, data: { confirm: 'هل أنت متأكد؟' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'إضافة طلب توظيف', new_applicant_path, class:'fonty floatR' %>

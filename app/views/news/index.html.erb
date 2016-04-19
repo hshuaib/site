@@ -1,0 +1,57 @@
+<br>
+<br>
+<br>
+
+<h2 class="fonty" align="center">الأخبار</h2>
+<br>
+<br>
+
+    <% @news.each do |news| %>
+
+  <%= image_tag news.picture.url , width: '25%', align:'right'%>
+<br>
+<br>
+<div class="event">
+ 
+<h4 class="eventheading">
+<%= news.title %> </h4>
+ 
+<h4 class="eventheading">
+<%= news.date %> </h4>
+ 
+<p class="fonty">
+
+<%= news.body %>
+<br>
+<p class="fonty" align="left">
+<br>
+<% if user_signed_in? %>
+<%= link_to 'عرض', news %>
+
+<%= link_to 'تعديل', edit_news_path(news) %>
+
+<%= link_to 'مسح', news, method: :delete, data: { confirm: 'هل أنت متأكد؟' } %>
+<% end %>
+
+<br>
+</p>
+<br>
+</p>
+
+<br>
+<br>
+<hr>
+<br>
+<br>
+<br> 
+</div>
+
+   <% end %>
+
+
+
+
+<br>
+<% if user_signed_in? %>
+<%= link_to 'ادخال خبر جديد', new_news_path, class:'fonty floatR'%>
+<% end %>

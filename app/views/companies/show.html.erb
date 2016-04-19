@@ -1,0 +1,97 @@
+<br>
+<br>
+<br>
+<br>
+
+<h2 class="fonty" align="center"> بيانات الوظيفة</h2>
+<br>
+<br>
+<br>
+<div class="formpad">
+<p class="fonty">
+  <strong >اسم المؤسسة:</strong>
+  <%= @company.companyName %>
+</p>
+<br>
+<p class="fonty">
+  <strong>المسمى الوظيفي :</strong>
+  <%= @company.jobTitle %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>تفاصيل الوظيفة:</strong>
+  <%= @company.jobDescription %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>عدد الموظفين المطلوبين:</strong>
+  <%= @company.noOfEmployees %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>اسم مقدم الطلب:</strong>
+  <%= @company.contactPerson %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>رقم التواصل:</strong>
+  <%= @company.mobileNo %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>البريد الالكتروني:</strong>
+  <%= @company.email %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>الجنسية:</strong>
+  <%= @company.nationality %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>الجنس:</strong>
+  <%= @company.gender %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>متوسط العمر:</strong>
+  <%= @company.age %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>نوع الإعاقة:</strong>
+  <%= @company.disability %>
+</p>
+<br>
+
+<p class="fonty">
+  <strong>المستوى التعليمي:</strong>
+  <%= @company.education %>
+</p>
+<br>
+<br>
+<p class="fonty floatR" >
+<%= link_to 'تعديل', edit_company_path(@company)%> |
+<%= link_to 'رجوع', companies_path %>
+</p>
+
+
+<button onclick="myFunction()" class="fonty">اطبع هذه الصفحة</button>
+
+<script>
+function myFunction() {
+    window.print();
+}
+</script>
+
+
+</div>

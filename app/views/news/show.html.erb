@@ -1,0 +1,30 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<p class="fonty">
+  <strong >العنوان:</strong>
+  <%= @news.title %>
+</p>
+
+<p class="fonty">
+  <strong>الصورة</strong>
+  <%= image_tag @news.picture.url %>
+</p>
+
+<p class="fonty">
+  <strong>المحتوى</strong>
+  <%= @news.body %>
+</p>
+
+<p class="fonty">
+  <strong>التاريخ</strong>
+  <%= @news.date %>
+</p>
+
+<br>
+<p class="fonty">
+<%= link_to 'تعديل', edit_news_path(@news) %> |
+<%= link_to 'الرجوع', news_index_path %>
+</p>

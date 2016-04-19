@@ -1,0 +1,123 @@
+<%= form_for(@company) do |f| %>
+  <% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @company.errors.count %> أخطاء منعت هذا الطلب من الحفظ</h2>
+
+      <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<hr>  
+<br>
+
+  <div class="field fonty formpad">
+<h3>
+بيانات الوظيفة 
+</h3>
+  <br>
+  </div>
+
+
+<br/>
+  <div class="field fonty formpad">
+    <%= f.label :companyName, "اسم الشركة" %><br>
+    <%= f.text_field :companyName, :required => true %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :jobTitle, "اسم الوظيفة" %><br>
+    <%= f.text_field :jobTitle, :required => true %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :jobDescription, "تفاصيل الوظيفة" %><br>
+    <%= f.text_area :jobDescription, :required => true %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :noOfEmployees, "عدد الموظفين المطلوبين" %><br>
+    <%= f.number_field :noOfEmployees, :required => true %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :contactPerson, "اسم مقدم الطلب" %><br>
+    <%= f.text_field :contactPerson, :required => true %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :mobileNo, "رقم التواصل" %><br>
+    <%= f.text_field :mobileNo, :required => true %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :email, "البريد الإلكتروني" %><br>
+    <%= f.text_field :email,:required => true %>
+  </div>
+  
+  <br/>
+  
+  <h3 class="field fonty formpad">
+  مواصفات الموظف المطلوبة 
+  </h3>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :nationality, "الجنسية" %><br>
+    <%= f.collection_select :nationality, Country.all, :name, :name, :required => true, :include_blank => true  %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :gender, "الجنس" %><br>
+    <%= f.select(:gender, Company::GENDER_LISTComp,:required => true)  %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :age, "متوسط العمر" %><br>
+    <%= f.number_field :age %>
+  </div>
+  <br/>
+  
+  <div class="field fonty formpad">
+      <%= f.label :disability, "نوع الإعاقة" %> <br> <br>
+	  
+     <%= check_box_tag 'company[disability][]', 'سمعية', checked('سمعية'), id: 'disability_hear' %>  
+ 	  <%= label_tag 'disability_hear', 'سمعية'%><br>
+	 
+    <%= check_box_tag 'company[disability][]', 'بصرية', checked('بصرية'), id: 'disability_vision' %> 
+	 <%= label_tag 'disability_vision', 'بصرية'%> <br>
+	
+    <%= check_box_tag 'company[disability][]', 'حركية', checked('حركية'), id: 'disability_move' %> 
+	  <%= label_tag 'disability_move', 'حركية'%><br>
+	  
+    <%= check_box_tag 'company[disability][]', 'ذهنية', checked('ذهنية'), id: 'disability_brain' %>
+	  <%= label_tag 'disability_brain', 'ذهنية'%> <br>
+
+    <%= check_box_tag 'company[disability][]', 'لا يهم', checked('لا يهم'), id: 'disability_no', :checked => true %>
+	  <%= label_tag 'disability_no', 'لا يهم'%> <br>
+	
+	
+  </div>
+  
+  <br/>
+  
+  <div class="field fonty formpad">
+    <%= f.label :education, "المستوى التعليمي" %><br>
+    <%= f.select(:education,Company::EDUCATION_LIST, :required => true) %>
+  </div>
+  <br/>
+  
+  <div class="actions fonty formpad">
+    <%= f.submit "حفظ" %>
+  </div>
+<% end %>

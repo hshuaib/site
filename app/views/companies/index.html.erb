@@ -1,0 +1,69 @@
+<br>
+<br>
+<br>
+
+<h2 class="fonty" align="center">قائمة المؤسسات</h2>
+<br>
+<br>
+<table class="fonty table" align="center">
+    <thead>
+		 <tr>
+			 <th class="tablespace eventheading down righttext" colspan="3">بيانات الوظيفة</th>
+			 <th class="tablespace eventheading down righttext" colspan="9">مواصفات الموظف المطلوبة</th>
+		 </tr>
+    </thead>
+	
+  <thead>
+    <tr>
+		<div class="field fonty formpad">
+		<%= form_tag companies_path, :method => 'get' do %>
+		      <%= text_field_tag :search, params[:search] %>
+		     <%= submit_tag "بحث" %>
+		      <% end %>
+		  	</div>
+			  
+			  <br>
+		
+      <th class="tablespace eventheading down"> اسم المؤسسة </th>
+      <th class="tablespace eventheading down">اسم الوظيفة</th>
+      <th class="tablespace eventheading down">عدد الوظائف</th>
+    <%#  <th>تفاصيل الوظيفة</th> %>
+    <%#  <th>اسم مقدم الطلب</th> %>
+    <%#  <th>رقم التواصل</th> %>
+    <%#  <th>البريد الإلكتروني</th> %>
+      <th class="tablespace eventheading down">الجنسية</th>
+      <th class="tablespace eventheading down">الجنس</th>
+      <th class="tablespace eventheading down">متوسط العمر</th>
+      <th class="tablespace eventheading down">الإعاقة</th>
+      <th class="tablespace eventheading down">المستوى التعليمي</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td class="tablespace fonty"><%= company.companyName %></td>
+        <td class="tablespace fonty"><%= company.jobTitle %></td>
+        <td class="tablespace fonty"><%= company.noOfEmployees %></td>
+      <%#  <td><%= company.jobDescription %></td>
+      <%#  <td><%= company.contactPerson %></td>
+      <%#  <td><%= company.mobileNo %></td>
+      <%#  <td><%= company.email %></td>
+        <td class="tablespace fonty"><%= company.nationality %></td>
+        <td class="tablespace fonty"><%= company.gender %></td>
+        <td class="tablespace fonty"><%= company.age %></td>
+        <td class="tablespace fonty"><%= company.disability %></td>
+        <td class="tablespace fonty"><%= company.education %></td>
+        <td class="tablespace fonty"><%= link_to 'عرض', company %></td>
+        <td class="tablespace fonty"><%= link_to 'تعديل', edit_company_path(company) %></td>
+        <td class="tablespace fonty"><%= link_to 'مسح', company, method: :delete, data: { confirm: 'هل أنت متأكد؟' } %></td>
+		 <td class="tablespace fonty">  <button class="fonty"><%= link_to 'مطابقة', matching_system_path(:id => company.id) %></button> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'ادخال شركة جديدة', new_company_path, class:'fonty floatR'%>

@@ -1,0 +1,41 @@
+<%# add navigation links to this file %>
+
+
+
+
+
+
+<li class="navbar"><%= link_to 'تواصل معنا', page_path('contact') %></li>
+<% if user_signed_in? %>
+ 	<li class="dropdown navbar fonty">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قاعدة البيانات <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+             <li><a href="/applicants" class="fonty" align="center">ذوي الإعاقة</a></li>
+             <li role="separator" class="divider"></li>
+             <li><a href="/companies" class="fonty" align="center">المؤسسات</a></li>
+           </ul>
+	   </li>
+
+
+
+<% else %>
+ <li class="dropdown fonty">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">سجل الآن <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/applicants/new" class="fonty" align="center">ذوي الإعاقة</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/companies/new" class="fonty" align="center">المؤسسات</a></li>
+          </ul>
+        </li>
+<% end %>
+
+
+<!--  <li class="navbar"><%= link_to 'من نحن', page_path('about') %></li>  -->
+<li class="navbar"><%= link_to 'معرض الصور', page_path('gallery') %></li>
+<li class="navbar"><%= link_to 'الفعاليات القادمة', events_path %></li>
+<li class="navbar"><%= link_to 'الأخبار', news_index_path %></li>
+
+
+
+<li class="navbar"><%= link_to 'من نحن', members_path %></li>
+<li class="navbar"><%= link_to 'الصفحة الرئيسية', root_path %></li>

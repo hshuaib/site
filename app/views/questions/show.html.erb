@@ -1,0 +1,20 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<p class="fonty">
+  <strong>السؤال:</strong>
+  <%= @question.q %>
+</p>
+
+<p class="fonty">
+  <strong>الإجابة:</strong>
+  <%= @question.ans %>
+</p>
+
+<p class="fonty">
+<%= link_to 'تعديل', edit_question_path(@question) %> |
+<%= link_to 'الرجوع', questions_path %>
+</p>

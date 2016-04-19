@@ -1,0 +1,54 @@
+<br>
+<br>
+<br>
+
+<h2 class="fonty" align="center">الأسئلة المتكررة</h2>
+<br>
+<br>
+<br>
+
+
+    <% @questions.each do |question| %>
+
+<div class="q">
+ 
+<h4 class="eventheading"> <b>
+	السؤال:
+</b><br><br><%= question.q  %> </h4>
+ <br>
+<h4 class="eventheading"> <b>
+	الإجابة:
+</b><br><br><%= question.ans %> </h4>
+ 
+<br>
+<p class="fonty" align="left">
+<br>
+<% if user_signed_in? %>
+<%= link_to 'عرض', question %>
+
+<%= link_to 'تعديل', edit_question_path(question) %>
+
+<%= link_to 'مسح', question, method: :delete, data: { confirm: 'هل أنت متأكد' } %>
+<% end %>
+
+<br>
+<br>
+</p>
+
+<br>
+<br>
+<hr>
+<br>
+<br>
+<br> 
+</div>
+
+   <% end %>
+
+
+
+
+<br>
+<% if user_signed_in? %>
+<%= link_to 'ادخال سؤال جديد', new_question_path, class:'fonty floatR'%>
+<% end %>

@@ -1,0 +1,195 @@
+<br>
+<br>
+<br>
+<br>
+
+<h2 class="fonty q" align="center"> بيانات المتقدم</h2>
+<br>
+<br>
+<br>
+<div>
+
+<table class="fonty table" align="center">	
+	
+<h3 class="eventheading q">
+ البيانات الشخصية
+</h3>
+<p class="fonty q">
+    <strong>صورة البطاقة الشخصية:</strong>
+<%= image_tag @applicant.image.url %>
+</p>
+
+<p class="fonty q">
+  <strong>الاسم:</strong>
+  <%= @applicant.name %>
+</p>
+<br>
+<p class="fonty q">
+  <strong>الرقم الشخصي:</strong>
+  <%= @applicant.QID %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>الجنسية:</strong>
+  <%= @applicant.nationality %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>تاريخ الميلاد:</strong>
+  <%= @applicant.dob %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>الجنس:</strong>
+  <%= @applicant.gender %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>الحالة الاجتماعية:</strong>
+  <%= @applicant.status %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>عدد الأطفال:</strong>
+  <%= @applicant.noOfChildren %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>المنطقة السكنية:</strong>
+  <%= @applicant.livingArea %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>رقم الهاتف:</strong>
+  <%= @applicant.phoneNo %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>رقم الجوال:</strong>
+  <%= @applicant.mobileNo %>
+</p>
+<br>
+<br>
+
+
+
+<h3 class="eventheading q">
+حالة الإعاقة 
+</h3>
+<p class="fonty q">
+  <strong>نوع الإعاقة:</strong>
+  <%= @applicant.disability %>
+</p>
+<br>
+<p class="fonty q">
+  <strong>التفاصيل:</strong>
+  <%= @applicant.details %>
+</p>
+<br>
+<p class="fonty q">
+  <strong>ملاحظات:</strong>
+  <%= @applicant.notes %>
+</p>
+<br>
+<p class="fonty q">
+  <strong>العمر عند الإصابة بالإعاقة:</strong>
+  <%= @applicant.age %>
+</p>
+<br>
+<p class="fonty q">
+  <strong>أسباب الإصابة:</strong>
+  <%= @applicant.reason %>
+</p>
+<br>
+<p class="fonty q">
+    <strong<>بطاقة العضوية لجمعية ذوي الإعاقة:</strong>
+<%= image_tag @applicant.membership.url %>
+</p>
+<br>
+<br>
+
+
+<h3 class="eventheading q">
+المؤهلات والخبرات
+</h3>
+<p class="fonty q">
+  <strong>المستوى التعليمي:</strong>
+  <%= @applicant.education %>
+</p>
+<br>
+
+
+
+<p class="fonty q">
+  <strong>الدورات:</strong>
+  <%= @applicant.workshop %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong> هل يشغل وظيفة حاليًا:</strong>
+  <%= human_boolean(@applicant.currentJob) %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>الوظائف التي عملت بها:</strong>
+  <%= @applicant.jobDescription %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>الوظيفة التي تستطيع القيام بها:</strong>
+  <%= @applicant.abilities %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>الوزارات/ المؤسسات المرشحة للتوظيف:</strong>
+  <%= @applicant.preference %>
+</p>
+<br>
+
+<p class="fonty q">
+  <strong>الخبرات:</strong>
+  <%= @applicant.skills %>
+</p>
+<br>
+
+<p class="fonty q">
+    <strong>صورة السيرة الذاتية:</strong>
+<%= image_tag @applicant.cv.url %>
+</p>
+</table>
+<br>
+<br>
+<p class="fonty floatR q" >
+<%= link_to 'تعديل', edit_applicant_path(@applicant) %> |
+<%= link_to 'رجوع', applicants_path %>
+</p>
+
+<br>
+<br>
+<button onclick="myFunction()" class="fonty floatR">اطبع هذه الصفحة</button>
+
+<script>
+function myFunction() {
+    window.print();
+}
+</script>
+<style>
+.print
+{
+	float:right;
+	padding-right: 150px;
+}
+</style>
+</div>

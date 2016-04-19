@@ -1,0 +1,42 @@
+<div class="authform fonty">
+  <h3 class-"fonty ">تعديل الحساب <% resource_name.to_s.humanize %> </h3>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+      <%= f.label :name, "الاسم" %>
+      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, "البريد الالكتروني" %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+    </div>
+    <fieldset>
+      <p class="fonty" align="center">الرجاء عدم تعبئة هذه الحقول إذا كنت لا تريد تغيير كلمة المرور</p>
+      <div class="form-group">
+        <%= f.label :password, "كلمة المرور" %>
+        <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "تأكيد كلمة المرور" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </fieldset>
+    <fieldset>
+      <p class="fonty" align="center">يحب إدخال كلمة المرور الحالية لتغيير بيانات الحساب</p>
+      <div class="form-group">
+        <%= f.label :current_password, "كلمة المرور الحالية"%>
+        <%= f.password_field :current_password, class: 'form-control' %>
+      </div>
+    </fieldset>
+    <%= f.submit 'تحديث الحساب', :class => 'button right fonty' %>
+  <% end %>
+</div>
+<div class="authform">
+<h3 class="fonty">إلغاء الحساب</h3>
+
+<%= button_to "إلغاء الحساب", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right fonty' %>
+
+</div>
